@@ -1,0 +1,465 @@
+
+        <script>
+        var region = "Utah-Colorado";
+        var variable = "qpf";
+        </script>
+
+        <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+        <html lang="en">
+        <head>
+        <link rel="icon" href="https://www.freeiconspng.com/thumbs/snowflakes-png/simple-blue-snowflakes-png-8.png">
+        <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+        <meta http-equiv="refresh" content="300">
+        <title>Utah-Colorado qpf</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+        <style TYPE="text/css">
+        body {Font-Family:Arial,Helvetica; }
+        .othercity_font {font-family: Arial,Helvetica,sans-serif; font-size: 12px; font-weight: bold; color: #000000;padding-top:5px;}
+        .metartim_font  {font-family: Arial,Helvetica,sans-serif; font-size: 10x; color: #000000}
+        .currentwx_font {font-family: Arial,Helvetica,sans-serif; font-size: 12px; font-weight: bold; color: #004639}
+        .small_font {font-family: Arial,Helvetica,sans-serif; font-size: 7pt; color: #004639}
+        .currentwx2_font {font-family: Arial,Helvetica,sans-serif; font-size: 14px; color: #000000; font-weight: bold}
+        .currentwx3_font {font-family: Arial,Helvetica,sans-serif; font-size: 12px; font-weight: bold; color: #000000}
+        .currenttemp_font {font-family: Arial,Helvetica,sans-serif; font-size: 14pt; color: #000000; font-weight: bold}
+        .citystate_font {font-family: Arial,Helvetica,sans-serif; font-size: 11pt; font-weight: bold; color: #004639}
+        .colheader_font {font-family: Arial,Helvetica,sans-serif; font-size: 9px; color: #004639}
+        .daydate_font {font-family: Arial,Helvetica,sans-serif; font-size: 12px; font-weight: bold; color: #004639}
+        .normal_font {font-family: Arial,Helvetica,sans-serif; font-size: 11px; font-weight: bold}
+        .rain_font {font-family: Arial,Helvetica,sans-serif; font-size: 11px; font-weight: bold; color: #009900}
+        .snow_font {font-family: Arial,Helvetica,sans-serif; font-size: 11px; font-weight: bold; color: #0000CC}
+        .noprecip_font {font-family: Arial,Helvetica,sans-serif; font-size: 11px; color: #000000}
+        .tstorm_font {font-family: Arial,Helvetica,sans-serif; font-size: 11px; font-weight: bold; color: #FF0033}
+        .lowtemp_font {font-family: Arial,Helvetica,sans-serif; font-size: 12px; font-weight: bold; color: #0000CC}
+        .hightemp_font {font-family: Arial,Helvetica,sans-serif; font-size: 12px; font-weight: bold; color: #CC0033}
+        .wxsummary_font {font-family: Arial,Helvetica,sans-serif; font-size: 11px; font-weight: bold; color: #004639}
+        .zonetext_font  {font-family: Arial,Helvetica,sans-serif; font-size:  10px; color: #333333}
+        .link_font {font-family: Arial,Helvetica,sans-serif; font-size: 10px; color: #FFFFFF; font-weight: bold}
+        .link2_font {font-family: Arial,Helvetica,sans-serif; font-size: 7pt; color: #004639; font-weight: bold}
+        .new_font {font-family: Arial,Helvetica,sans-serif; font-size: 9pt; color: #FF3344; font-weight: bold;}
+        .new2_font {font-family: Arial,Helvetica,sans-serif; font-size: 18px; color: #FF3344; font-weight: bold;}
+        .like_h2_font {font-family: Arial,Helvetica,sans-serif; font-size: 18px; color: #004639; font-weight: bold;}
+        .sat_radar_match_font {font-family: Arial,Helvetica,sans-serif; font-size: 13px; color: #004639; font-weight: bold;}
+        .animation_font {font-family: Arial,Helvetica,sans-serif; font-size: 12px; color: #004639; font-weight: bold;}
+        .lookup_font {font-family: Arial,Helvetica,sans-serif; font-size: 14px; color: #004639; font-weight: bold;}
+
+        .table1 {
+            table-layout: fixed;
+            width: 100%;
+            max-width: 728px;
+            word-wrap: break-word;
+        }
+
+        .table4 {
+            table-layout: fixed;
+            width: 100%;
+            max-width: 1022px;
+            max-height: 673px;
+            word-wrap: break-word;
+            font-size: 16px;
+            font-weight: bold;
+        }
+
+        img {
+        max-width: 80%;
+        height: auto;
+        }
+
+        .slidecontainer {
+        width: 90%; /* Width of the outside container */
+        }
+
+        /* The slider itself */
+        .slider {
+        -webkit-appearance: none;  /* Override default CSS styles */
+        appearance: none;
+        width: 90%; /* width */
+        height: 40px; /* height */
+        background: #3355FF; /* background color */
+        outline: none; /* Remove outline */
+        opacity: 0.7; /* Set transparency (for mouse-over effects on hover) */
+        -webkit-transition: .2s; /* 0.2 seconds transition on hover */
+        transition: opacity .2s;
+        }
+        /* Mouse-over effects */
+        .slider:hover {
+        opacity: 1; /* Fully shown on mouse-over */
+        }
+
+        /* The slider handle (use -webkit- (Chrome, Opera, Safari, Edge) and -moz- (Firefox) to override default look) */ 
+        .slider::-webkit-slider-thumb {
+        -webkit-appearance: none; /* Override default look */
+        appearance: none;
+        width: 20px; /* Set a specific slider handle width */
+        height: 40px; /* Slider handle height */
+        background: #aaaaaa; /* handle color*/
+        cursor: pointer; /* Cursor on hover */
+        }
+
+        .slider::-moz-range-thumb {
+        width: 20px; /* Set a specific slider handle width */
+        height: 40px; /* Slider handle height */
+        background: #aaaaaa; /* handle color */
+        cursor: pointer; /* Cursor on hover */
+        }
+
+        /* RESPONSIVE NAVBAR WITH DROPDOWN CSS FROM W3SCHOOLS */
+        /* Add a black background color to the top navigation */
+        .topnav {
+        background-color: #7688f9;
+        overflow: hidden;
+        }
+
+        /* Style the links inside the navigation bar */
+        .topnav a {
+        float: left;
+        display: block;
+        color: #f2f2f2;
+        text-align: center;
+        padding: 1px 6px 1px 6px;
+        text-decoration: none;
+        font-size: 15px;
+        }
+
+        /* Add an active class to highlight the current page */
+        .active {
+        background-color: #4CAF50;
+        color: white;
+        }
+
+        /* Hide the link that should open and close the topnav on small screens */
+        .topnav .icon {
+        display: none;
+        }
+
+        /* Dropdown container - needed to position the dropdown content */
+        .dropdown {
+        float: left;
+        overflow: hidden;
+        }
+
+        /* Style the dropdown button to fit inside the topnav */
+        .dropdown .dropbtn {
+        font-size: 15px; 
+        border: none;
+        outline: none;
+        color: white;
+        padding: 1px 26px 1px 26px;
+        background-color: inherit;
+        font-family: inherit;
+        margin: 0;
+        }
+
+        /* Style the dropdown content (hidden by default) */
+        .dropdown-content {
+        display: none;
+        position: absolute;
+        background-color: #fd8;
+        min-width: 160px;
+        box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+        z-index: 1;
+        }
+
+        /* Style the links inside the dropdown */
+        .dropdown-content a {
+        float: none;
+        color: black;
+        padding: 1px 6px 1px 6px;
+        text-decoration: none;
+        display: block;
+        text-align: left;
+        }
+
+        /* Add a dark background on topnav links and the dropdown button on hover */
+        .topnav a:hover, .dropdown:hover .dropbtn {
+        background-color: #555;
+        color: white;
+        }
+
+        /* Add a grey background to dropdown links on hover */
+        .dropdown-content a:hover {
+        background-color: #ddd;
+        color: black;
+        }
+
+        /* Show the dropdown menu when the user moves the mouse over the dropdown button */
+        .dropdown:hover .dropdown-content {
+        display: block;
+        }
+
+        /* When the screen is less than 360 pixels wide, hide all links, except for the first one ("Home"). Show the link that contains should open and close the topnav (.icon) */
+        @media screen and (max-width: 360px) {
+        .topnav a:not(:first-child), .dropdown .dropbtn {
+            display: none;
+        }
+        .topnav a.icon {
+            float: right;
+            display: block;
+        }
+        }
+
+        /* The "responsive" class is added to the topnav with JavaScript when the user clicks on the icon. This class makes the topnav look good on small screens (display the links vertically instead of horizontally) */
+        @media screen and (max-width: 360px) {
+        .topnav.responsive {position: relative;}
+        .topnav.responsive a.icon {
+            position: absolute;
+            right: 0;
+            top: 0;
+        }
+        .topnav.responsive a {
+            float: none;
+            display: block;
+            text-align: left;
+        }
+        .topnav.responsive .dropdown {float: none;}
+        .topnav.responsive .dropdown-content {position: relative;}
+        .topnav.responsive .dropdown .dropbtn {
+            display: block;
+            width: 100%;
+            text-align: left;
+        }
+        }
+        /* END OF RESPONSIVE NAVBAR WITH DROPDOWN CSS FROM W3SCHOOLS */
+
+
+
+        label {
+        color: #3333FF;
+        font-weight: bold;
+        font-size: 18px;
+        }
+
+
+
+
+        h1 {font-family: Arial,Helvetica,sans-serif;
+            font-size: 18px;
+            font-weight: bold;
+            color: #004639;margin-top:10px;}
+        h2 {font-family: Arial,Helvetica,sans-serif;
+            font-size: 18px;
+            font-weight: bold;
+            color: #004639;	
+            margin-bottom: 0px;
+            padding-bottom 0px;}
+        #pup {position:absolute; visibility:hidden; z-index:200; width:240px}
+
+        //-->
+        </style>
+
+
+        </head>
+
+
+        <!-- Javascript for w3schools dropdown menus -->
+        <script language="javascript" type="text/javascript">
+        /* Toggle between adding and removing the "responsive" class to topnav when the user clicks on the icon */
+        function myFunction() {
+        var x = document.getElementById("myTopnav");
+        if (x.className === "topnav") {
+            x.className += " responsive";
+        } else {
+            x.className = "topnav";
+        }
+        }
+        </script>
+
+
+        <!-- ********* JQUERY NEEDED FOR DAY AND TIME LABELS ON GFS FORECAST MAPS ******** -->
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+
+
+        <body bgcolor="#FFFFFF"  link="#004639" vlink="#004639" alink="#004639">
+
+
+        <!-- START OF DROP DOWN MENU -->
+        <!-- ****  Topnav menus with dropdown from w3schools.com **** -->
+        <table class=table1 align="center" valign="top" border="0" cellpadding="0" cellspacing="0">
+        <tr>
+            <td align="center" valign="middle">
+                <div class="topnav" id="myTopnav">
+        <!--         <a href="https://clamalo.github.io" class="active">Home</a>   -->
+
+                    <div class="dropdown">
+                    <button class="dropbtn">PNW 
+                        <i class="fa fa-caret-down"></i>
+                    </button>
+                    <div class="dropdown-content">
+                        <a href="https://clamalo.github.io/model-v2/regions/PNW/precip.html" title="PNW Precip">PNW Precip</a>
+                        <a href="https://clamalo.github.io/model-v2/regions/PNW/accumulated_precip.html" title="PNW Snow">PNW Accumulated Precip</a>
+                        <a href="https://clamalo.github.io/model-v2/regions/PNW/snow.html" title="PNW Snow">PNW Snow</a>
+                        <a href="https://clamalo.github.io/model-v2/regions/PNW/accumulated_snow.html" title="PNW Snow">PNW Accumulated Snow</a>
+                        <a href="https://clamalo.github.io/model-v2/regions/PNW/temp.html" title="PNW Snow">PNW Temperature</a>
+                        <a href="https://clamalo.github.io/model-v2/regions/PNW/SLR.html" title="PNW Snow">PNW SLR</a>
+                        <a href="https://clamalo.github.io/model-v2/regions/PNW/ptype.html" title="PNW P-Type">PNW P-Type</a>
+                    </div>
+                    </div> 
+
+                    <div class="dropdown">
+                    <button class="dropbtn">NorCal
+                        <i class="fa fa-caret-down"></i>
+                    </button>
+                    <div class="dropdown-content">
+                        <a href="https://clamalo.github.io/model-v2/regions/NorCal/precip.html" title="NorCal Precip">NorCal Precip</a>
+                        <a href="https://clamalo.github.io/model-v2/regions/NorCal/accumulated_precip.html" title="NorCal Snow">NorCal Accumulated Precip</a>
+                        <a href="https://clamalo.github.io/model-v2/regions/NorCal/snow.html" title="NorCal Snow">NorCal Snow</a>
+                        <a href="https://clamalo.github.io/model-v2/regions/NorCal/accumulated_snow.html" title="NorCal Snow">NorCal Accumulated Snow</a>
+                        <a href="https://clamalo.github.io/model-v2/regions/NorCal/temp.html" title="NorCal Snow">NorCal Temperature</a>
+                        <a href="https://clamalo.github.io/model-v2/regions/NorCal/SLR.html" title="NorCal Snow">NorCal SLR</a>
+                        <a href="https://clamalo.github.io/model-v2/regions/NorCal/ptype.html" title="NorCal P-Type">NorCal P-Type</a>
+                    </div>
+                    </div>
+
+                    <div class="dropdown">
+                    <button class="dropbtn">Utah-Colorado 
+                        <i class="fa fa-caret-down"></i>
+                    </button>
+                    <div class="dropdown-content">
+                        <a href="https://clamalo.github.io/model-v2/regions/Utah-Colorado/precip.html" title="Utah-Colorado Precip">Utah-Colorado Precip</a>
+                        <a href="https://clamalo.github.io/model-v2/regions/Utah-Colorado/accumulated_precip.html" title="Utah-Colorado Snow">Utah-Colorado Accumulated Precip</a>
+                        <a href="https://clamalo.github.io/model-v2/regions/Utah-Colorado/snow.html" title="Utah-Colorado Snow">Utah-Colorado Snow</a>
+                        <a href="https://clamalo.github.io/model-v2/regions/Utah-Colorado/accumulated_snow.html" title="Utah-Colorado Snow">Utah-Colorado Accumulated Snow</a>
+                        <a href="https://clamalo.github.io/model-v2/regions/Utah-Colorado/temp.html" title="Utah-Colorado Snow">Utah-Colorado Temperature</a>
+                        <a href="https://clamalo.github.io/model-v2/regions/Utah-Colorado/SLR.html" title="Utah-Colorado Snow">Utah-Colorado SLR</a>
+                        <a href="https://clamalo.github.io/model-v2/regions/Utah-Colorado/ptype.html" title="Utah-Colorado P-Type">Utah-Colorado P-Type</a>
+                    </div>
+                    </div>
+
+                    <a href="javascript:void(0);" class="icon" onclick="myFunction()">&#9776;</a>
+                </div>
+            </td>
+        </tr>
+        </table>
+
+        <!--  END OF DROP DOWN MENU -->
+
+        <div class="hidden">
+            <script type="text/javascript">
+                <!--//--><![CDATA[//><!--
+                    var images = new Array()
+                    function preload() {
+                        for (i = 0; i < preload.arguments.length; i++) {
+                            images[i] = new Image()
+                            images[i].src = preload.arguments[i]
+                        }
+                    }
+                    preload(
+                        "https://clamalo.github.io/model-v2/images/"+region+"/"+variable+"/3_"+variable+".png",
+                        "https://clamalo.github.io/model-v2/images/"+region+"/"+variable+"/6_"+variable+".png",
+                "https://clamalo.github.io/model-v2/images/"+region+"/"+variable+"/9_"+variable+".png",
+                "https://clamalo.github.io/model-v2/images/"+region+"/"+variable+"/12_"+variable+".png",
+                "https://clamalo.github.io/model-v2/images/"+region+"/"+variable+"/15_"+variable+".png",
+                "https://clamalo.github.io/model-v2/images/"+region+"/"+variable+"/18_"+variable+".png",
+                "https://clamalo.github.io/model-v2/images/"+region+"/"+variable+"/21_"+variable+".png",
+                "https://clamalo.github.io/model-v2/images/"+region+"/"+variable+"/24_"+variable+".png",
+                "https://clamalo.github.io/model-v2/images/"+region+"/"+variable+"/27_"+variable+".png",
+                "https://clamalo.github.io/model-v2/images/"+region+"/"+variable+"/30_"+variable+".png",
+                "https://clamalo.github.io/model-v2/images/"+region+"/"+variable+"/33_"+variable+".png",
+                "https://clamalo.github.io/model-v2/images/"+region+"/"+variable+"/36_"+variable+".png",
+                "https://clamalo.github.io/model-v2/images/"+region+"/"+variable+"/39_"+variable+".png",
+                "https://clamalo.github.io/model-v2/images/"+region+"/"+variable+"/42_"+variable+".png",
+                "https://clamalo.github.io/model-v2/images/"+region+"/"+variable+"/45_"+variable+".png",
+                "https://clamalo.github.io/model-v2/images/"+region+"/"+variable+"/48_"+variable+".png",
+                "https://clamalo.github.io/model-v2/images/"+region+"/"+variable+"/51_"+variable+".png",
+                "https://clamalo.github.io/model-v2/images/"+region+"/"+variable+"/54_"+variable+".png",
+                "https://clamalo.github.io/model-v2/images/"+region+"/"+variable+"/57_"+variable+".png",
+                "https://clamalo.github.io/model-v2/images/"+region+"/"+variable+"/60_"+variable+".png",
+                "https://clamalo.github.io/model-v2/images/"+region+"/"+variable+"/63_"+variable+".png",
+                "https://clamalo.github.io/model-v2/images/"+region+"/"+variable+"/66_"+variable+".png",
+                "https://clamalo.github.io/model-v2/images/"+region+"/"+variable+"/69_"+variable+".png",
+                "https://clamalo.github.io/model-v2/images/"+region+"/"+variable+"/72_"+variable+".png",
+                "https://clamalo.github.io/model-v2/images/"+region+"/"+variable+"/75_"+variable+".png",
+                "https://clamalo.github.io/model-v2/images/"+region+"/"+variable+"/78_"+variable+".png",
+                "https://clamalo.github.io/model-v2/images/"+region+"/"+variable+"/81_"+variable+".png",
+                "https://clamalo.github.io/model-v2/images/"+region+"/"+variable+"/84_"+variable+".png",
+                "https://clamalo.github.io/model-v2/images/"+region+"/"+variable+"/87_"+variable+".png",
+                "https://clamalo.github.io/model-v2/images/"+region+"/"+variable+"/90_"+variable+".png",
+                "https://clamalo.github.io/model-v2/images/"+region+"/"+variable+"/93_"+variable+".png",
+                "https://clamalo.github.io/model-v2/images/"+region+"/"+variable+"/96_"+variable+".png",
+                "https://clamalo.github.io/model-v2/images/"+region+"/"+variable+"/99_"+variable+".png",
+                "https://clamalo.github.io/model-v2/images/"+region+"/"+variable+"/102_"+variable+".png",
+                "https://clamalo.github.io/model-v2/images/"+region+"/"+variable+"/105_"+variable+".png",
+                "https://clamalo.github.io/model-v2/images/"+region+"/"+variable+"/108_"+variable+".png",
+                "https://clamalo.github.io/model-v2/images/"+region+"/"+variable+"/111_"+variable+".png",
+                "https://clamalo.github.io/model-v2/images/"+region+"/"+variable+"/114_"+variable+".png",
+                "https://clamalo.github.io/model-v2/images/"+region+"/"+variable+"/117_"+variable+".png",
+                "https://clamalo.github.io/model-v2/images/"+region+"/"+variable+"/120_"+variable+".png",
+                "https://clamalo.github.io/model-v2/images/"+region+"/"+variable+"/123_"+variable+".png",
+                "https://clamalo.github.io/model-v2/images/"+region+"/"+variable+"/126_"+variable+".png", 
+                "https://clamalo.github.io/model-v2/images/"+region+"/"+variable+"/129_"+variable+".png",
+                "https://clamalo.github.io/model-v2/images/"+region+"/"+variable+"/132_"+variable+".png",
+                "https://clamalo.github.io/model-v2/images/"+region+"/"+variable+"/135_"+variable+".png",
+                "https://clamalo.github.io/model-v2/images/"+region+"/"+variable+"/138_"+variable+".png",
+                "https://clamalo.github.io/model-v2/images/"+region+"/"+variable+"/141_"+variable+".png",
+                "https://clamalo.github.io/model-v2/images/"+region+"/"+variable+"/144_"+variable+".png",
+                "https://clamalo.github.io/model-v2/images/"+region+"/"+variable+"/147_"+variable+".png",
+                "https://clamalo.github.io/model-v2/images/"+region+"/"+variable+"/150_"+variable+".png",
+                "https://clamalo.github.io/model-v2/images/"+region+"/"+variable+"/153_"+variable+".png",
+                "https://clamalo.github.io/model-v2/images/"+region+"/"+variable+"/156_"+variable+".png",
+                "https://clamalo.github.io/model-v2/images/"+region+"/"+variable+"/159_"+variable+".png",
+                "https://clamalo.github.io/model-v2/images/"+region+"/"+variable+"/162_"+variable+".png",
+                "https://clamalo.github.io/model-v2/images/"+region+"/"+variable+"/165_"+variable+".png",
+                "https://clamalo.github.io/model-v2/images/"+region+"/"+variable+"/168_"+variable+".png",
+                    )
+                //--><!]]>
+            </script>
+        </div>
+
+
+
+
+        <table class=table4 valign="top" align="center" cellpadding="0" cellspacing="0">
+            <tr>
+                <td  align="center">
+                
+                    <img id="targetimg">
+                    
+                </td>
+            </tr>  
+            <tr>
+                <td align="center">
+                    <label  id="rangeText" />
+                </td>
+            </tr> 
+
+            <tr>
+                <td  align="center">
+                <div class="slidecontainer">
+                    <img id="targetimg">
+                    <input id="valR" type="range" class="slider" min="1" max="56" value="1" step="1" oninput="showVal(this.value)" onchange="showVal(this.value)"/>
+                    <span id="range"></span>
+                    <!--   <input type="text" id="textInput" value=""> -->
+                </div>
+                </td>
+            </tr>
+
+        </table>
+
+
+        <script>    
+            var val = document.getElementById("valR").value;
+                                                                                /*   document.getElementById("range").innerHTML=val; */
+                /* document.getElementById("targetimg").src ="https://www.weatherstreet.com/gfs_files/gfs_mslp_pcpn_frzn_"+region+"_us_" + val*2 + ".png"; */
+                document.getElementById("targetimg").src = "https://clamalo.github.io/model-v2/images/"+region+"/"+variable+"/"+val*3+"_"+variable+".png";
+                function showVal(newVal){
+                                                                /*     document.getElementById("range").innerHTML=newVal; */
+                document.getElementById("targetimg").src = "https://clamalo.github.io/model-v2/images/"+region+"/"+variable+"/"+newVal*3+"_"+variable+".png";
+
+        }
+        </script>
+
+
+                
+        <!-- COPYRIGHT, TERMS & CONDITIONS -->
+        <table class=table1 border="0" align="center">       
+        <tr>
+            <td align="center" style="font-size: 14px; color: #004639">
+                <a href="mailto:clamalo@nuevaschool.org" title="email" style="color:#004639">Email me!</a>
+            </td>
+        </tr>
+        </table>
+
+        </body>
+        </html>
+        
