@@ -776,3 +776,9 @@ for f in range(0,169,3):
         plt.suptitle("Point Forecast: "+point_name+" (Grid Elevation: "+str(point_elevation)+"') - Init: "+init_label, fontsize=16)
 
         plt.savefig('/Users/clamalo/documents/ensemble-blend/images/points/'+point_name+'_all.png',bbox_inches='tight',dpi=200)
+
+os.system('git add images')
+os.system('git add regions')
+os.system('git commit -m "'+datestr+cycle+'z"')
+os.system('git pull')
+os.system('git push origin main')
