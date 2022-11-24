@@ -60,16 +60,27 @@ def weatherbell_precip_colormap():
     return cmap
 
 def ptype_colormap():
-    # cmap = colors.ListedColormap(['#ffffff', '#45f248', '#FFDA00', '#29b6f6'])
     white_cmap = colors.ListedColormap(['#ffffff','#ffffff','#ffffff','#ffffff','#ffffff'])
     rain_cmap = colors.ListedColormap(['#b5e5ad','#76c77c','#56c164','#3cb15c','#319f4f'])
-    # rain_cmap = cm.get_cmap('Greens',10)
     mixed_cmap = colors.ListedColormap(['#fab87d','#fec067','#ffa772','#f69b55','#ff892e'])
     snow_cmap = colors.ListedColormap(['#b3cbe5','#919bcd','#8f85bd','#8d6ab5','#8b54a5'])
     snow_cmap = cm.get_cmap('seismic_r',10)
     cmap = np.vstack((white_cmap(np.linspace(0,1,5)),rain_cmap(np.linspace(0,1,5)),mixed_cmap(np.linspace(0,1,5)),snow_cmap(np.linspace(0,1,10))[5:]))
     cmap = ListedColormap(cmap, name='ptype')
     return cmap
+
+def ptype_rain():
+    rain_cmap = colors.ListedColormap(['#ffffff','#b5e5ad','#76c77c','#56c164','#3cb15c','#319f4f','#309d4e'])
+    return rain_cmap
+
+def ptype_mixed():
+    mixed_cmap = colors.ListedColormap(['#ffffff','#fab87d','#fec067','#ffa772','#f69b55','#ff892e','#ff7f00'])
+    return mixed_cmap
+
+def ptype_snow():
+    snow_cmap = colors.ListedColormap(['#ffffff','#b3cbe5','#919bcd','#8f85bd','#8d6ab5','#8b54a5','#8a4ea3'])
+    return snow_cmap
+
 
 def euro_processing(f):
 
@@ -467,22 +478,33 @@ def plot_ptype(ds,f,points,domains):
 
         domain_ds = ds.sel(lat=slice(bottom_lat,top_lat),lon=slice(left_lon,right_lon))
 
+        domain_ds['ptype'] = xr.where(domain_ds['t2m_avg'] > 40, 2, xr.where(domain_ds['t2m_avg'] > 35, 1, 0))
+        domain_ds['ptype'] = xr.where((domain_ds['tp']) > 0.01, domain_ds['ptype'], np.nan)
+
+        rain_tp = domain_ds['tp_maxed'].where(domain_ds['ptype'] == 2)
+        mixed_tp = domain_ds['tp_maxed'].where(domain_ds['ptype'] == 1)
+        snow_tp = domain_ds['tp_maxed'].where(domain_ds['ptype'] == 0)
+
+        rain_tp = xr.where((domain_ds['ptype']) == 2, domain_ds['tp_maxed'], np.nan)
+        mixed_tp = xr.where((domain_ds['ptype']) == 1, domain_ds['tp_maxed'], np.nan)
+        snow_tp = xr.where((domain_ds['ptype']) == 0, domain_ds['tp_maxed'], np.nan)
+
         fig = plt.figure(figsize=(10,7))
         ax = plt.axes(projection=ccrs.PlateCarree())
         plt.title('P-Type (0.1" QPF Increments) - Forecast Hour '+str(f)+' ('+forecast_datestr+')',fontsize=12)
 
-        colormap = ptype_colormap()
-        bounds = [0,1,2,3,4]
-        bounds = [0,0.1,0.2,0.3,0.4,0.5,0.6,0.7,0.8,0.9,1,1.1,1.2,1.3,1.4,1.5,1.6,1.7,1.8,1.9,2]
+        colormap = ptype_rain()
+        bounds = [0,0.01,0.1,0.2,0.3,0.4,0.5]
         norm = colors.BoundaryNorm(boundaries=bounds, ncolors=len(bounds))
 
-        cf = ax.contourf(domain_ds['lon'],domain_ds['lat'],domain_ds['ptype'], levels=bounds, norm=norm, cmap=colormap)
+        cf_rain = ax.contourf(domain_ds['lon'],domain_ds['lat'],rain_tp, norm=norm, cmap=colormap)
+        cf_mixed = ax.contourf(domain_ds['lon'],domain_ds['lat'],mixed_tp,levels=bounds, norm=norm, cmap=ptype_mixed())
+        cf_snow = ax.contourf(domain_ds['lon'],domain_ds['lat'],snow_tp,levels=bounds, norm=norm, cmap=ptype_snow())
+
         ax.coastlines()
         ax.add_feature(cartopy.feature.STATES,linewidth=1)
         ax.add_feature(USCOUNTIES.with_scale('500k'),linewidth=0.075)
-        cbar = plt.colorbar(cf, shrink=0.7, orientation="horizontal", pad=0.03)
-        cbar.set_ticks([0.25,0.75,1.25,1.75])
-        cbar.set_ticklabels(['None','Rain','Mixed','Snow'])
+
         plt.savefig('/Users/clamalo/documents/ensemble-blend/images/'+str(domain)+'/ptype/'+str(f)+'_ptype.png',dpi=200,bbox_inches='tight')
 
     return points
@@ -526,7 +548,7 @@ for f in range(0,145,3):
     datetime_datestr = datetime.strptime(datestr,'%Y%m%d')
     utcnow = datetime.strptime((str(datetime.utcnow().year)+str(datetime.utcnow().month)+str(datetime.utcnow().day)),'%Y%m%d')
     day_diff = (datetime_datestr - utcnow).days
-    ingest_frame(f,day_diff,datestr,cycle)
+    # ingest_frame(f,day_diff,datestr,cycle)
 
     if f == 0:
         continue
@@ -628,11 +650,11 @@ for f in range(0,145,3):
         total_ds['slr'] = ds['slr']
 
     points = plot_hourly_snow(ds,f,points,domains)
-    points = plot_total_snow(total_ds,f,points,domains)
-    points = plot_hourly_precip(ds,f,points,domains)
-    points = plot_total_precip(total_ds,f,points,domains)
-    points = plot_temperature(ds,f,points,domains)
-    points = plot_slr(ds,f,method,points,domains)
+    # points = plot_total_snow(total_ds,f,points,domains)
+    # points = plot_hourly_precip(ds,f,points,domains)
+    # points = plot_total_precip(total_ds,f,points,domains)
+    # points = plot_temperature(ds,f,points,domains)
+    # points = plot_slr(ds,f,method,points,domains)
     points = plot_ptype(ds,f,points,domains)
 
     if f != 144:
