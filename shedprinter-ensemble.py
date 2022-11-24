@@ -655,6 +655,8 @@ for f in range(0,169,3):
 
     ds['tp'] = ds['tp'].where(ds['tp'] > 0, 0)
 
+    ds = interpolate(ds,2)
+
     method = 'opensnow'
     if method == 'kuchera':
         ds['slr'] = xr.where(ds['t2m_avg'] < 271.16, 12+2*(271.16-ds['t2m_avg']), xr.where(ds['t2m_avg'] > 271.16, 12-2*(ds['t2m_avg']-271.16), 12))
@@ -671,8 +673,6 @@ for f in range(0,169,3):
     ds['slr'] = ds['slr'].where(ds['slr'] > 3.01).fillna(0)
 
     ds['snow'] = ds['tp']*ds['slr']
-
-    ds = interpolate(ds,2)
 
     #assign init coordinate with datestr, cycle
     ds = ds.assign_coords({'init':datestr+cycle})
