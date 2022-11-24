@@ -569,10 +569,10 @@ for f in range(0,169,3):
             points[n] = points[n].split(',')
 
         for n in range(len(points)-1,-1,-1):
-            # if points[n][-1] != 'NorCal' and points[n][-1] != 'PNW' and points[n][-1] != 'Utah' and points[n][-1] != 'Colorado' and points[n][-1] != 'MT' and points[n][-1] != 'WY' and points[n][-1] != 'ID':
+            if points[n][-1] != 'NorCal' and points[n][-1] != 'PNW' and points[n][-1] != 'Utah' and points[n][-1] != 'Colorado' and points[n][-1] != 'MT' and points[n][-1] != 'WY' and points[n][-1] != 'ID':
             # if points[n][-1] != 'Northeast':
             # if points[n][-1] != 'Colorado':
-            if points[n][-1] != 'Utah' and points[n][-1] != 'Colorado' and points[n][-1] != 'PNW' and points[n][-1] != 'NorCal':
+            # if points[n][-1] != 'Utah' and points[n][-1] != 'Colorado' and points[n][-1] != 'PNW' and points[n][-1] != 'NorCal':
                 points.pop(n)
             
         for n in range(len(points)):
@@ -804,5 +804,5 @@ os.system('git add images')
 os.system('git add regions')
 os.system('git add points.html')
 os.system('git commit -m "'+datestr+cycle+'z"')
-os.system('git pull')
-os.system('git push origin main')
+os.system('git pull origin main')
+os.system('git push origin HEAD:main')
