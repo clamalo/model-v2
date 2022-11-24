@@ -182,8 +182,67 @@ def ingest_frame(frame,day_diff,datestr,cycle):
     with open('/Users/shedprinter/documents/model-v2/gribs/gefs_air_'+name_frame(frame)+'.grib2', 'wb') as file:
         file.write(response.content)
 
+def create_html():
 
+    file = open('/Users/shedprinter/documents/points.html')
+    points = file.readlines()
+    domains = []
+    for point in points:
+        domain = point.split(',')[-1].split(';')[0]
+        if domain not in domains:
+            if domain != 'Northeast':
+                domains.append(domain)
 
+    f = open('/Users/shedprinter/documents/model-v2/points.html', 'w')
+
+    html_template = """<html>
+  <head>
+    <title>Point Forecasts</title>
+    <link rel="stylesheet" media="all" href="points.css" />
+  </head>
+  <body>
+    <div id="header">
+    </div>
+
+    <div class="scrollmenu">
+      <div class="header" id="region"></div>
+    </div>
+
+    <div class="scrollmenu">
+      <div class="header" id="area"></div>
+    </div>
+
+    <!-- Content -->
+    <div id="content">
+      <img
+        id="accum"
+        src="https://clamalo.github.io/images/pointforecasts/accumulated/utah/Alta_plot.png"
+      />
+    </div>
+
+    <script>
+      window.data = {
+        accum: {"""
+        
+    for domain in domains:
+        html_template += domain+""": {"""
+        for point in points:
+            if str(point.split(',')[0]) == 'Alta':
+                point_name = str(point.split(',')[0])
+            else:
+                point_name = str(point.split(',')[0])
+            if domain in point.split(',')[-1]:
+                html_template += point_name+""":'https://clamalo.github.io/model-v2/images/points/"""+point_name+"""_all.png',"""
+        html_template += """},"""
+    html_template += """},
+        };
+    </script>
+    <script src="points.js"></script>
+    </body>
+    </html>"""
+
+    f.write(html_template)
+    f.close()
 
 def plot_hourly_snow(ds,f,points,domains):
     global forecast_datestr
@@ -491,7 +550,7 @@ def plot_ptype(ds,f,points,domains):
 
     return points
 
-
+create_html()
 for f in range(0,169,3):
 
     if f==0:
@@ -743,6 +802,7 @@ for f in range(0,169,3):
 os.chdir('/Users/shedprinter/documents/model-v2/')
 os.system('git add images')
 os.system('git add regions')
+os.system('git add points.html')
 os.system('git commit -m "'+datestr+cycle+'z"')
 os.system('git pull')
 os.system('git push origin main')
