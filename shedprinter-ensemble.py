@@ -79,7 +79,10 @@ def ptype_mixed():
     return mixed_cmap
 
 def ptype_snow():
-    snow_cmap = colors.ListedColormap(['#ffffff','#b3cbe5','#919bcd','#8f85bd','#8d6ab5','#8b54a5','#8a4ea3'])
+    snow_cmap = cm.get_cmap('seismic_r',10)
+    snow_cmap = np.vstack((snow_cmap(np.linspace(0,1,10))[0],snow_cmap(np.linspace(0,1,10))[5:]))
+    snow_cmap[0] = [1,1,1,1]
+    snow_cmap = ListedColormap(snow_cmap, name='snow')
     return snow_cmap
 
 def find_temperature(gh1,gh2,avg,elevation):
@@ -695,11 +698,11 @@ for f in range(0,169,3):
 
     start = time.time()
     points = plot_hourly_snow(ds,f,points,domains)
-    points = plot_total_snow(total_ds,f,points,domains)
-    points = plot_hourly_precip(ds,f,points,domains)
-    points = plot_total_precip(total_ds,f,points,domains)
-    points = plot_temperature(ds,f,points,domains)
-    points = plot_slr(ds,f,method,points,domains)
+    # points = plot_total_snow(total_ds,f,points,domains)
+    # points = plot_hourly_precip(ds,f,points,domains)
+    # points = plot_total_precip(total_ds,f,points,domains)
+    # points = plot_temperature(ds,f,points,domains)
+    # points = plot_slr(ds,f,method,points,domains)
     points = plot_ptype(ds,f,points,domains)
     end = time.time()
     plot_ds = end - start
